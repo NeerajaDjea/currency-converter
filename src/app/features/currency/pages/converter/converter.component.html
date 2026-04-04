@@ -1,0 +1,28 @@
+<div class="container">
+    <div class="card">
+        <h2>Currency Converter</h2>
+
+        <div class="form">
+            <input #amountInput type="number" placeholder="Amount" />
+
+            <select #fromCurrency>
+        <option value="GBP">GBP</option>
+        <option value="USD">USD</option>
+        <option value="EUR">EUR</option>
+      </select>
+
+            <select #toCurrency>
+        <option value="USD">USD</option>
+        <option value="EUR">EUR</option>
+        <option value="GBP">GBP</option>
+      </select>
+            <button (click)="
+          convert(+amountInput.value, fromCurrency.value, toCurrency.value)
+        ">
+        Convert
+      </button>
+
+            <div class="result">Result: --</div>
+        </div>
+    </div>
+</div>
