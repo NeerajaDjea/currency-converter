@@ -1,28 +1,43 @@
-<div class="container">
+<div class="page-container">
+  <header class="header">
+    <h1>Currency Converter App</h1>
+  </header>
+
+  <main class="container">
     <div class="card">
-        <h2>Currency Converter</h2>
+      <h2>EUR → Currency Converter</h2>
 
-        <div class="form">
-            <input #amountInput type="number" placeholder="Amount" />
+      <div class="form-group">
+        <label for="amount">Amount in EUR:</label>
+        <input id="amount" type="number" [(ngModel)]="amount" />
+      </div>
 
-            <select #fromCurrency>
-        <option value="GBP">GBP</option>
-        <option value="USD">USD</option>
-        <option value="EUR">EUR</option>
-      </select>
+      <div class="form-group">
+        <label for="currency">Convert to:</label>
+        <select id="currency" [(ngModel)]="toCurrency">
+          <option value="" disabled>Select currency</option>
+          <option
+            *ngFor="let currency of filteredCurrencies$ | async"
+            [value]="currency"
+          >
+            {{ currency }}
+          </option>
+        </select>
+      </div>
 
-            <select #toCurrency>
-        <option value="USD">USD</option>
-        <option value="EUR">EUR</option>
-        <option value="GBP">GBP</option>
-      </select>
-            <button (click)="
-          convert(+amountInput.value, fromCurrency.value, toCurrency.value)
-        ">
-        Convert
-      </button>
+      <button (click)="convert()">Convert</button>
 
-            <div class="result">Result: --</div>
+      <div class="result-container">
+        <div *ngIf="loading$ | async">Loading...</div>
+        <div *ngIf="error$ | async as err" class="error">Error: {{ err }}</div>
+        <div *ngIf="result$ | async as result" class="result">
+          Result: {{ result }}
         </div>
+      </div>
     </div>
+  </main>
+
+  <footer class="footer">
+    © 2026 Currency Converter. All rights reserved.
+  </footer>
 </div>

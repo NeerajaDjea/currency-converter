@@ -1,17 +1,13 @@
 export interface CurrencyState {
-  amount: number;
-  from: string;
-  to: string;
   result: number | null;
+  currencies: string[];
   loading: boolean;
   error: string | null;
 }
 
-export const initialState: CurrencyState = {
-  amount: 0,
-  from: 'GBP',
-  to: 'USD',
+export const initialCurrencyState: CurrencyState = {
   result: null,
+  currencies: [],
   loading: false,
   error: null,
 };

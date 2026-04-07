@@ -1,25 +1,24 @@
 import { createReducer, on } from '@ngrx/store';
+import { initialCurrencyState, CurrencyState } from './currency.state';
 import * as CurrencyActions from './currency.actions';
-import { initialState } from './currency.state';
 
 export const currencyReducer = createReducer(
-  initialState,
-  on(CurrencyActions.convertCurrency, (state, { amount, from, to }) => ({
+  initialCurrencyState,
+  on(CurrencyActions.convertCurrency, (state) => ({
     ...state,
-    amount,
-    from,
-    to,
     loading: true,
     error: null,
   })),
-  on(CurrencyActions.convertCurrencySuccess, (state, { result }) => ({
+  on(CurrencyActions.convertCurrencySuccess, (state, { result, rates }) => ({
     ...state,
     result,
+    currencies: Object.keys(rates).sort(),
     loading: false,
+    error: null,
   })),
   on(CurrencyActions.convertCurrencyFailure, (state, { error }) => ({
     ...state,
-    error,
     loading: false,
+    error,
   }))
 );

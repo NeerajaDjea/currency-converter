@@ -1,27 +1,55 @@
-# CurrencyConverter
+## Currency Converter App
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.12.
+This is an Angular 18 application using NgRx for state management.
 
-## Development server
+### Features
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- Convert currency from EUR to any supported currency
+- Uses Fixer API (latest rates endpoint)
+- Reactive state management with NgRx
+- Dynamic currency dropdown based on API response
 
-## Code scaffolding
+### API Limitation
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+The Fixer API free tier only supports EUR as the base currency.
 
-## Build
+Because of this:
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- All conversions are performed from EUR
+- Conversion logic is handled on the client using returned exchange rates
 
-## Running unit tests
+### Example
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+EUR → USD:
+amount \* rates['USD']
 
-## Running end-to-end tests
+### Tech Stack
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+- Angular 18 (standalone APIs)
+- NgRx Store & Effects
+- RxJS
+- Fixer API
 
-## Further help
+### Future Improvements
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- Support other base currencies (with paid API plan)
+- Add caching for rates
+- Improve UI/UX
+- show correct curency symbols
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js (v18+ recommended)
+- Angular CLI
+
+### Install dependencies
+
+npm install
+
+### Run the app
+
+ng serve
+
+Navigate to http://localhost:4200/

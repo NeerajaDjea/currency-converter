@@ -2,12 +2,12 @@ import { createAction, props } from '@ngrx/store';
 
 export const convertCurrency = createAction(
   '[Currency] Convert',
-  props<{ amount: number; from: string; to: string }>()
+  props<{ amount: number; to: string }>()
 );
 
 export const convertCurrencySuccess = createAction(
   '[Currency] Convert Success',
-  props<{ result: number }>()
+  props<{ result: number; rates: Record<string, number> }>()
 );
 
 export const convertCurrencyFailure = createAction(
